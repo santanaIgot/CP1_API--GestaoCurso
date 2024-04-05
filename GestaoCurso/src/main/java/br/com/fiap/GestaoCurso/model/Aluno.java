@@ -1,10 +1,7 @@
 package br.com.fiap.GestaoCurso.model;
 
 import br.com.fiap.GestaoCurso.dto.aluno.CadastroAlunoDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,15 +17,23 @@ public class Aluno {
 
     @Id
     @GeneratedValue
+
+    @Column(name = "cd_codigo")
     Long id ;
+    @Column(name = "nm_cliente", length = 100)
     String nome;
+    @Column(name = "dt_nascimento")
     LocalDate dataNascimento;
+    @Column(name = "email")
     String email;
-    int telefone;
+    @Column(name = "numero")
+    String telefone;
 
     public Aluno(CadastroAlunoDto dto){
         nome = dto.nome();
         email = dto.email();
         dataNascimento = dto.dataNascimento();
+        telefone = dto.telefone();
+
     }
 }
