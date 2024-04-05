@@ -1,6 +1,5 @@
 package br.com.fiap.GestaoCurso.controller;
 
-
 import br.com.fiap.GestaoCurso.dto.curso.CursoDetalheDto;
 import br.com.fiap.GestaoCurso.model.Curso;
 import br.com.fiap.GestaoCurso.repository.CursoRepository;
