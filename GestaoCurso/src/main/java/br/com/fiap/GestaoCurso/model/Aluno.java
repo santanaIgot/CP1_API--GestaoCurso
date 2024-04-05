@@ -17,23 +17,25 @@ public class Aluno {
 
     @Id
     @GeneratedValue
-
     @Column(name = "cd_codigo")
-    Long id ;
+    private Long id ;
+
     @Column(name = "nm_cliente", length = 100)
-    String nome;
+    private String nome;
+
     @Column(name = "dt_nascimento")
-    LocalDate dataNascimento;
+    private LocalDate dataNascimento;
+
     @Column(name = "email")
-    String email;
+    private String email;
+
     @Column(name = "numero")
-    String telefone;
+    private String telefone;
 
     public Aluno(CadastroAlunoDto dto){
         nome = dto.nome();
         email = dto.email();
         dataNascimento = dto.dataNascimento();
         telefone = dto.telefone();
-
     }
 }
