@@ -20,16 +20,16 @@ public class Aluno {
     @Column(name = "cd_codigo")
     private Long id ;
 
-    @Column(name = "nm_cliente", length = 100)
+    @Column(name = "nm_cliente", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "dt_nascimento")
+    @Column(name = "dt_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "numero")
+    @Column(name = "numero", nullable = false)
     private String telefone;
 
     public Aluno(CadastroAlunoDto dto){
