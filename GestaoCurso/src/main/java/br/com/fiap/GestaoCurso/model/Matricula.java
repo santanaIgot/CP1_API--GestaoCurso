@@ -20,20 +20,20 @@ public class Matricula {
 
     @Id
     @GeneratedValue
-    @Column(name = "cd_matricula")
+    @Column(name = "cd_matricula", nullable = false)
     private Long id;
 
-    @Column(name = "cd_aluno")
+    @Column(name = "cd_aluno", nullable = false)
     private Long codigoAluno;
 
-    @Column(name = "cd_curso")
+    @Column(name = "cd_curso", nullable = false)
     private Long codigoCurso;
 
     @Column(name = "dt_matricula")
     @CreatedDate
     private LocalDateTime dataMatricula;
 
-    @Column(name = "nr_rm")
+    @Column(name = "nr_rm", nullable = false)
     private Long rm;
 
     public Matricula(CadastroMatriculaDto dto) {

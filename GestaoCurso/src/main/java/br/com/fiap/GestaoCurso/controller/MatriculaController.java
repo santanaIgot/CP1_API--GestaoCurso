@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/matricula")
+@RequestMapping("/matriculas")
 public class MatriculaController {
     @Autowired
     MatriculaRepository matriculaRepository;
