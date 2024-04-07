@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/professores")
 public class ProfessorController {
     @Autowired
-    ProfessorRepository professorRepository;
+    private ProfessorRepository professorRepository;
 
 
     @PostMapping

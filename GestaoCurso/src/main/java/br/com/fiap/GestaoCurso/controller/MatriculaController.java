@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/matriculas")
 public class MatriculaController {
     @Autowired
-    MatriculaRepository matriculaRepository;
+    private MatriculaRepository matriculaRepository;
 
     @PostMapping
     @Transactional
