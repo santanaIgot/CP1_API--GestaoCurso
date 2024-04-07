@@ -32,7 +32,7 @@ public class Curso {
 
     @Column(name="dt_cadastro")
     @CreatedDate
-    private LocalDate dataCadastroCurso;
+    private LocalDateTime dataCadastroCurso;
 
     @Column(name = "nm_prof", nullable = false)
     private String professor;
