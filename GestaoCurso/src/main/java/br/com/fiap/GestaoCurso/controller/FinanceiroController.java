@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/financeiro")
 public class FinanceiroController {
     @Autowired
-    FinanceiroRepository financeiroRepository;
+    private FinanceiroRepository financeiroRepository;
 
     @PostMapping
     @Transactional

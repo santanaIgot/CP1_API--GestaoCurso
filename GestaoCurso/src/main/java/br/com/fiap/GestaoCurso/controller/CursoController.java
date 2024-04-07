@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/cursos")
 public class CursoController {
     @Autowired
-    CursoRepository cursoRepository;
+    private CursoRepository cursoRepository;
 
     @PostMapping
     @Transactional

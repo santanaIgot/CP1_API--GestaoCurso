@@ -2,6 +2,7 @@ package br.com.fiap.GestaoCurso.controller;
 
 
 import br.com.fiap.GestaoCurso.dto.aluno.AlunoDetalheDto;
+import br.com.fiap.GestaoCurso.dto.aluno.AtualizacaoAlunoDto;
 import br.com.fiap.GestaoCurso.dto.aluno.ListagemAlunoDto;
 import br.com.fiap.GestaoCurso.model.Aluno;
 import br.com.fiap.GestaoCurso.repository.AlunoRepository;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("/alunos")
 public class AlunoController {
     @Autowired
-    AlunoRepository alunoRepository;
+    private AlunoRepository alunoRepository;
 
     @PostMapping
     @Transactional
@@ -35,6 +36,16 @@ public class AlunoController {
     public ResponseEntity <List<ListagemAlunoDto>> listar(Pageable pageable) {
         var lista = alunoRepository.findAll(pageable).stream().map(ListagemAlunoDto::new).toList();
         return ResponseEntity.ok(lista);
+    }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity <AlunoDetalheDto> atualizar(@PathVariable("id")Long id,
+                                                      @RequestBody AtualizacaoAlunoDto dto){
+        var aluno = alunoRepository.getReferenceById(id);
+
+        aluno.atualizarDados(dto);
+        return ResponseEntity.ok(new AlunoDetalheDto(aluno));
     }
 
 }
