@@ -40,10 +40,8 @@ public class AlunoController {
 
     @PutMapping("{id}")
     @Transactional
-    public ResponseEntity <AlunoDetalheDto> atualizar(@PathVariable("id")Long id,
-                                                      @RequestBody AtualizacaoAlunoDto dto){
+    public ResponseEntity <AlunoDetalheDto> atualizar(@PathVariable("id") Long id, @RequestBody AtualizacaoAlunoDto dto){
         var aluno = alunoRepository.getReferenceById(id);
-
         aluno.atualizarDados(dto);
         return ResponseEntity.ok(new AlunoDetalheDto(aluno));
     }

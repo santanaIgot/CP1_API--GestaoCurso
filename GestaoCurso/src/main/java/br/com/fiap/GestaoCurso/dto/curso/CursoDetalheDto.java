@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public record CursoDetalheDto(Long id, String curso, String descricao, LocalDateTime dataCadastroCurso, String professor) {
 
     public CursoDetalheDto(Curso curso) {
-        this(curso.getId(),curso.getDescricao(), curso.getCurso(),curso.getDataCadastroCurso() ,curso.getProfessor());
+        this(curso.getId(),curso.getCurso(),curso.getDescricao(),curso.getDataCadastroCurso() ,curso.getProfessor());
     }
 
 }
