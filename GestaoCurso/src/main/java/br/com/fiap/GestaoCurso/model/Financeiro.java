@@ -13,23 +13,21 @@ import lombok.Setter;
 @Table(name = "Financeiro_cp1_java")
 
 public class Financeiro {
+
     @Id
     @GeneratedValue
-
-
     private Long id;
 
     @Column(name = "cd_aluno", nullable = false)
     private Long codigoAluno;
 
     @Column(name = "tp_pagamento", nullable = false, length = 100)
-    private String tipoPagamento;
+    private TipoPagamento pagamento;
 
     public Financeiro(CadastroFinanceiroDto dto) {
-
         id = dto.id();
         codigoAluno = dto.codigoAluno();
-        tipoPagamento = dto.tipoPagamento();
+        pagamento = dto.pagamento();
 
     }
 }

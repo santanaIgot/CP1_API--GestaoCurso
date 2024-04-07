@@ -1,4 +1,6 @@
 package br.com.fiap.GestaoCurso.dto.financeiro;
 
-public record CadastroFinanceiroDto(Long id,Long codigoAluno , String tipoPagamento) {
+import br.com.fiap.GestaoCurso.model.TipoPagamento;
+
+public record CadastroFinanceiroDto(Long id, Long codigoAluno , TipoPagamento pagamento) {
 }
