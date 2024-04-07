@@ -27,16 +27,12 @@ public class Financeiro {
     private TipoPagamento pagamento;
 
     public Financeiro(CadastroFinanceiroDto dto) {
-        id = dto.id();
         codigoAluno = dto.codigoAluno();
         pagamento = dto.pagamento();
 
     }
 
     public void atualizaDados(AtualizacaoFinanceiroDto atualizacaoFinanceiroDto) {
-        if(atualizacaoFinanceiroDto.codigoAluno() != null){
-            codigoAluno = atualizacaoFinanceiroDto.codigoAluno();
-        }
         if(atualizacaoFinanceiroDto.pagamento() != null){
             pagamento = atualizacaoFinanceiroDto.pagamento();
         }

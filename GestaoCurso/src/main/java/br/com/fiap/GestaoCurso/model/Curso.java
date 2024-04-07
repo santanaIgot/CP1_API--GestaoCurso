@@ -19,30 +19,28 @@ import java.time.LocalDateTime;
 @Table(name = "Curso_cp1_java")
 @EntityListeners(AuditingEntityListener.class)
 public class Curso {
+
     @Id
     @GeneratedValue
-
     @Column(name="cd_codigo")
     private Long id;
 
-    @Column(name="nm_curso",nullable = false)
+    @Column(name="nm_curso", nullable = false, length = 60)
     private String curso;
 
-    @Column(name="dc_curso",nullable = false)
+    @Column(name="dc_curso",nullable = false, length = 200)
     private String descricao;
 
     @Column(name="dt_cadastro")
     @CreatedDate
     private LocalDateTime dataCadastroCurso;
 
-    @Column(name = "nm_prof", nullable = false)
+    @Column(name = "nm_prof", nullable = false, length = 100)
     private String professor;
 
     public Curso(CadastroCursoDto dto) {
-        id = dto.id();
         curso = dto.curso();
         descricao = dto.descricao();
-        dataCadastroCurso = dto.dataCadastroCurso();
         professor = dto.professor();
 
 
