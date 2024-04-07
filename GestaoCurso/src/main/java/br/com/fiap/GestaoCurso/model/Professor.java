@@ -14,9 +14,9 @@ import lombok.Setter;
 public class Professor {
 
 
-    @Column(name = "cd_professor")
     @GeneratedValue
     @Id
+    @Column(name = "cd_professor")
     private Long id;
 
     @Column(name = "nm_professor", nullable = false, length = 100)

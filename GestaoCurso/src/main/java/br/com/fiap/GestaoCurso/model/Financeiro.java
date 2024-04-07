@@ -17,6 +17,7 @@ public class Financeiro {
 
     @Id
     @GeneratedValue
+        @Column(name="cd_financeiro")
     private Long id;
 
     @Column(name = "cd_aluno", nullable = false)
