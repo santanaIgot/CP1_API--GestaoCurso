@@ -11,6 +11,7 @@ import br.com.fiap.GestaoCurso.model.Professor;
 import br.com.fiap.GestaoCurso.repository.ProfessorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,8 @@ public class    ProfessorController {
         return ResponseEntity.created(uri).body(new ProfessorDetalheDto(professor));
     }
     @GetMapping
-    public ResponseEntity<List<ListagemProfessorDto>> listar(){
-        var  lista = professorRepository.findAll().stream().map(ListagemProfessorDto::new).toList();
+    public ResponseEntity<List<ListagemProfessorDto>> listar(Pageable pageable){
+        var  lista = professorRepository.findAll(pageable).stream().map(ListagemProfessorDto::new).toList();
 
         return ResponseEntity.ok(lista);
     }
