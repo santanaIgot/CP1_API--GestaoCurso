@@ -1,6 +1,7 @@
 package br.com.fiap.GestaoCurso.model;
 
 
+import br.com.fiap.GestaoCurso.dto.curso.AtualizacaoCursoDto;
 import br.com.fiap.GestaoCurso.dto.curso.CadastroCursoDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -45,5 +46,17 @@ public class Curso {
         professor = dto.professor();
 
 
+    }
+
+    public void atualizaDados(AtualizacaoCursoDto atualizacaoMercadoDto) {
+        if(atualizacaoMercadoDto.curso() != null){
+            curso = atualizacaoMercadoDto.curso();
+        }
+        if(atualizacaoMercadoDto.descricao() != null){
+            descricao = atualizacaoMercadoDto.descricao();
+        }
+        if(atualizacaoMercadoDto.professor() != null){
+            professor= atualizacaoMercadoDto.professor();
+        }
     }
 }
