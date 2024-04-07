@@ -1,5 +1,6 @@
 package br.com.fiap.GestaoCurso.model;
 
+import br.com.fiap.GestaoCurso.dto.aluno.AtualizacaoAlunoDto;
 import br.com.fiap.GestaoCurso.dto.aluno.CadastroAlunoDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,5 +38,16 @@ public class Aluno {
         email = dto.email();
         dataNascimento = dto.dataNascimento();
         telefone = dto.telefone();
+    }
+
+    public void atualizarDados(AtualizacaoAlunoDto dto){
+        if(dto.nome() != null)
+            nome = dto.nome();
+        if(dto.dataNascimento() != null)
+            dataNascimento = dto.dataNascimento();
+        if(dto.email() != null)
+            email = dto.email();
+        if(dto.telefone() != null)
+            telefone = dto.telefone();
     }
 }
