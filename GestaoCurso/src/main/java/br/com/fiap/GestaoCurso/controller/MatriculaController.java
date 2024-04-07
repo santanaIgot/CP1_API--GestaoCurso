@@ -13,6 +13,7 @@ import br.com.fiap.GestaoCurso.repository.MatriculaRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,8 +38,8 @@ public class MatriculaController {
 
 
     @GetMapping
-    public ResponseEntity<List<ListagemMatriculaDto>> listar(){
-        var lista = matriculaRepository.findAll().stream().map(ListagemMatriculaDto::new).toList();
+    public ResponseEntity<List<ListagemMatriculaDto>> listar(Pageable pageable){
+        var lista = matriculaRepository.findAll(pageable).stream().map(ListagemMatriculaDto::new).toList();
 
         return ResponseEntity.ok(lista);
     }
