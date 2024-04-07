@@ -7,6 +7,7 @@ import br.com.fiap.GestaoCurso.dto.curso.ListagemCursoDto;
 import br.com.fiap.GestaoCurso.model.Curso;
 import br.com.fiap.GestaoCurso.repository.CursoRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class CursoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<CursoDetalheDto> post(@RequestBody CadastroCursoDto dto, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<CursoDetalheDto> post(@RequestBody @Valid CadastroCursoDto dto, UriComponentsBuilder uriBuilder){
         var curso = new Curso(dto);
         cursoRepository.save(curso);
         var uri = uriBuilder.path("/cursos/{id}").buildAndExpand(curso.getId()).toUri();
@@ -37,9 +38,15 @@ public class CursoController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ListagemCursoDto> pesquisar(@PathVariable("id") Long id){
+        var curso = cursoRepository.getReferenceById(id);
+        return ResponseEntity.ok(new ListagemCursoDto(curso));
+    }
+
     @PutMapping("{id}")
     @Transactional
-    public ResponseEntity<CursoDetalheDto> atualiza(@PathVariable("id") Long id, @RequestBody AtualizacaoCursoDto atualizacaoMercadoDto){
+    public ResponseEntity<CursoDetalheDto> atualiza(@PathVariable("id") Long id, @RequestBody @Valid AtualizacaoCursoDto atualizacaoMercadoDto){
         var curso = cursoRepository.getReferenceById(id);
         curso.atualizaDados(atualizacaoMercadoDto);
         return ResponseEntity.ok(new CursoDetalheDto(curso));
