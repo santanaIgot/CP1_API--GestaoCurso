@@ -35,8 +35,8 @@ public class Curso {
     @CreatedDate
     private LocalDateTime dataCadastroCurso;
 
-    @Column(name = "nm_prof", nullable = false, length = 100)
-    private String professor;
+    @Column(name = "nm_professor", nullable = false)
+    private long professor;
 
     public Curso(CadastroCursoDto dto) {
         curso = dto.curso();

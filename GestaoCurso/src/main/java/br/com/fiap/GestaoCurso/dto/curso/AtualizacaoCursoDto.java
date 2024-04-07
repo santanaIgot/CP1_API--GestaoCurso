@@ -13,7 +13,6 @@ public record AtualizacaoCursoDto(
         @NotBlank
         @Size(max = 200, min = 5)
         String descricao,
-        @NotBlank
-        @Size(min = 5, max = 100)
-        String professor) {
+        @NotNull
+        Long professor) {
 }
