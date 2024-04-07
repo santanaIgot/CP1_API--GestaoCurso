@@ -27,10 +27,10 @@ public class Aluno {
     @Column(name = "dt_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "nm_email", nullable = false, length = 100)
     private String email;
 
-    @Column(name = "numero", nullable = false)
+    @Column(name = "nr_numero", nullable = false, length=11)
     private String telefone;
 
     public Aluno(CadastroAlunoDto dto){
