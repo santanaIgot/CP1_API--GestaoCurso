@@ -1,5 +1,6 @@
 package br.com.fiap.GestaoCurso.model;
 
+import br.com.fiap.GestaoCurso.dto.matricula.AtualizacaoMatriculaDto;
 import br.com.fiap.GestaoCurso.dto.matricula.CadastroMatriculaDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,10 +38,14 @@ public class Matricula {
     private Long rm;
 
     public Matricula(CadastroMatriculaDto dto) {
-        id = dto.id();
         codigoAluno = dto.codigoAluno();
         codigoCurso = dto.codigoCurso();
-        dataMatricula = dto.dataMatricula();
         rm = dto.rm();
+    }
+
+    public void atualizarDados(AtualizacaoMatriculaDto dto) {
+        if(dto.codigoCurso() != null){
+            codigoCurso = dto.codigoCurso();
+        }
     }
 }

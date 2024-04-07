@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record CadastroProfessorDto(
+public record AtualizacaoProfessorDto(
         @NotBlank()
         @Size(max = 100, min = 3 , message = "O nome deve ter no mínimo 3 caracteres.")
         String nome,

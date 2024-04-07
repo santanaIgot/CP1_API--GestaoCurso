@@ -1,6 +1,7 @@
 package br.com.fiap.GestaoCurso.controller;
 
 
+import br.com.fiap.GestaoCurso.dto.aluno.ListagemAlunoDto;
 import br.com.fiap.GestaoCurso.dto.curso.AtualizacaoCursoDto;
 import br.com.fiap.GestaoCurso.dto.curso.CursoDetalheDto;
 import br.com.fiap.GestaoCurso.dto.financeiro.AtualizacaoFinanceiroDto;
@@ -10,6 +11,7 @@ import br.com.fiap.GestaoCurso.dto.financeiro.ListagemFinanceiroDto;
 import br.com.fiap.GestaoCurso.model.Financeiro;
 import br.com.fiap.GestaoCurso.repository.FinanceiroRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +29,7 @@ public class FinanceiroController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<FinanceiroDetalheDto> post(@RequestBody CadastroFinanceiroDto dto, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<FinanceiroDetalheDto> post(@RequestBody @Valid CadastroFinanceiroDto dto, UriComponentsBuilder uriBuilder){
         var financeiro = new Financeiro(dto);
         financeiroRepository.save(financeiro);
 
@@ -42,9 +44,15 @@ public class FinanceiroController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ListagemFinanceiroDto> pesquisar(@PathVariable("id") Long id){
+        var financeiro = financeiroRepository.getReferenceById(id);
+        return ResponseEntity.ok(new ListagemFinanceiroDto(financeiro));
+    }
+
     @PutMapping("{id}")
     @Transactional
-    public ResponseEntity<FinanceiroDetalheDto> atualiza(@PathVariable("id") Long id, @RequestBody AtualizacaoFinanceiroDto atualizacaoFinanceiroDto){
+    public ResponseEntity<FinanceiroDetalheDto> atualiza(@PathVariable("id") Long id, @RequestBody @Valid AtualizacaoFinanceiroDto atualizacaoFinanceiroDto){
         var financeiro = financeiroRepository.getReferenceById(id);
         financeiro.atualizaDados(atualizacaoFinanceiroDto);
         return ResponseEntity.ok(new FinanceiroDetalheDto(financeiro));

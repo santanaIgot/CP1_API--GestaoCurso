@@ -1,5 +1,6 @@
 package br.com.fiap.GestaoCurso.model;
 
+import br.com.fiap.GestaoCurso.dto.professor.AtualizacaoProfessorDto;
 import br.com.fiap.GestaoCurso.dto.professor.CadastroProfessorDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,4 +31,12 @@ public class Professor {
         materia = dto.materia();
     }
 
+    public void atualizarDados(AtualizacaoProfessorDto dto) {
+        if(dto.nome() != null){
+            nome = dto.nome();
+        }
+        if(dto.materia() != null){
+            materia = dto.materia();
+        }
+    }
 }

@@ -1,6 +1,9 @@
 package br.com.fiap.GestaoCurso.dto.financeiro;
 
 import br.com.fiap.GestaoCurso.model.TipoPagamento;
+import jakarta.validation.constraints.NotNull;
 
-public record AtualizacaoFinanceiroDto(Long codigoAluno , TipoPagamento pagamento) {
+public record AtualizacaoFinanceiroDto(
+        @NotNull(message = "Tipo de pagamento é obrigatório")
+        TipoPagamento pagamento)  {
 }
