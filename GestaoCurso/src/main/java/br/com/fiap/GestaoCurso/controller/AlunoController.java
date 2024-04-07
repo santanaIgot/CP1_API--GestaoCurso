@@ -7,6 +7,7 @@ import br.com.fiap.GestaoCurso.dto.aluno.ListagemAlunoDto;
 import br.com.fiap.GestaoCurso.model.Aluno;
 import br.com.fiap.GestaoCurso.repository.AlunoRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AlunoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<AlunoDetalheDto> post(@RequestBody CadastroAlunoDto dto, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<AlunoDetalheDto> post(@RequestBody @Valid CadastroAlunoDto dto, UriComponentsBuilder uriBuilder){
         var aluno = new Aluno(dto);
         alunoRepository.save(aluno);
         var uri = uriBuilder.path("/aluno/{id}").buildAndExpand(aluno.getId()).toUri();
@@ -38,12 +39,25 @@ public class AlunoController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ListagemAlunoDto> pesquisar(@PathVariable("id") Long id){
+        var aluno = alunoRepository.getReferenceById(id);
+        return ResponseEntity.ok(new ListagemAlunoDto(aluno));
+    }
+
     @PutMapping("{id}")
     @Transactional
-    public ResponseEntity <AlunoDetalheDto> atualizar(@PathVariable("id") Long id, @RequestBody AtualizacaoAlunoDto dto){
+    public ResponseEntity <AlunoDetalheDto> atualizar(@PathVariable("id") Long id, @RequestBody  @Valid AtualizacaoAlunoDto dto){
         var aluno = alunoRepository.getReferenceById(id);
         aluno.atualizarDados(dto);
         return ResponseEntity.ok(new AlunoDetalheDto(aluno));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id){
+        alunoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
