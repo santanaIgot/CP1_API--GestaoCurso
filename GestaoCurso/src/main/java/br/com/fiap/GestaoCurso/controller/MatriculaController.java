@@ -38,4 +38,11 @@ public class MatriculaController {
         return ResponseEntity.ok(lista);
     }
 
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id){
+        matriculaRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

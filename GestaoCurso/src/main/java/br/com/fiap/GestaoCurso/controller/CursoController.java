@@ -1,6 +1,7 @@
 package br.com.fiap.GestaoCurso.controller;
 
 import br.com.fiap.GestaoCurso.dto.aluno.ListagemAlunoDto;
+import br.com.fiap.GestaoCurso.dto.curso.AtualizacaoCursoDto;
 import br.com.fiap.GestaoCurso.dto.curso.CursoDetalheDto;
 import br.com.fiap.GestaoCurso.dto.curso.ListagemCursoDto;
 import br.com.fiap.GestaoCurso.model.Curso;
@@ -30,11 +31,24 @@ public class CursoController {
 
         return ResponseEntity.created(uri).body(new CursoDetalheDto(curso));
     }
-
     @GetMapping
-    public ResponseEntity<List<ListagemCursoDto>> listar(Pageable pageable){
-        var lista = cursoRepository.findAll(pageable).stream().map(ListagemCursoDto::new).toList();
+    public ResponseEntity <List<ListagemCursoDto>> listar(Pageable pageable) {
+        var lista = cursoRepository.findAll(pageable).stream().map(ListagemCursoDto:: new).toList();
         return ResponseEntity.ok(lista);
     }
 
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity<CursoDetalheDto> atualiza(@PathVariable("id") Long id, @RequestBody AtualizacaoCursoDto atualizacaoMercadoDto){
+        var curso = cursoRepository.getReferenceById(id);
+        curso.atualizaDados(atualizacaoMercadoDto);
+        return ResponseEntity.ok(new CursoDetalheDto(curso));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id){
+        cursoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
